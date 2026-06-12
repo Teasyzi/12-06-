@@ -1,0 +1,12 @@
+body{margin:0;font-family:Segoe UI,sans-serif;background:#0f0f0f;color:#fff}
+.screen{display:none;min-height:100vh;justify-content:center;align-items:center;flex-direction:column;padding:20px}
+.active{display:flex}
+.card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:30px;border-radius:24px;max-width:700px;text-align:center}
+button{padding:12px 24px;border:none;border-radius:30px;background:#ff4d6d;color:#fff;cursor:pointer}
+.phone-frame{border:8px solid #333;border-radius:30px;padding:10px}
+#board{width:300px;height:400px;background:#222}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;width:90%}
+.gallery img{width:100%;border-radius:12px}
+#particles{position:fixed;inset:0;pointer-events:none}
+.heart{position:absolute;animation:fall 5s linear forwards}
+@keyframes fall{from{transform:translateY(-50px)}to{transform:translateY(110vh);opacity:0}}
