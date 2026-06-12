@@ -1,59 +1,242 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>As Peças da Nossa História</title>
+
+<title>❤️ As Peças da Nossa História ❤️</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+
 <div id="particles"></div>
+
+<audio id="bgMusic" loop>
+    <source src="audio/musica.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ======================
+TELA INICIAL
+====================== -->
+
 <section id="home" class="screen active">
-  <div class="card">
-    <h1>❤️ Para meu amoziiii ❤️</h1>
-    <p>Uma surpresa feita para Letícia, minha princesinha.</p>
-    <div id="counter"></div>
-    <button id="startBtn">Começar</button>
-  </div>
+
+    <div class="glass-card hero">
+
+        <h1>❤️ Para meu amoziiii ❤️</h1>
+
+        <p class="hero-text">
+
+            Uma pequena surpresa feita especialmente para a minha princesa.
+
+            <br><br>
+
+            Cada peça guarda uma lembrança.
+            Cada lembrança guarda um sentimento.
+
+        </p>
+
+        <div id="counter"></div>
+
+        <button id="startBtn">
+
+            Começar Nossa História ❤️
+
+        </button>
+
+    </div>
+
 </section>
 
-<section id="puzzle" class="screen">
-  <h2 id="phaseTitle"></h2>
-  <div class="phone-frame"><div id="board"></div></div>
-  <button id="completeBtn">Simular Puzzle Concluído</button>
+<!-- ======================
+PROGRESSO
+====================== -->
+
+<div id="progressContainer">
+
+    <div id="progressBar"></div>
+
+</div>
+
+<!-- ======================
+PUZZLE
+====================== -->
+
+<section id="puzzleScreen" class="screen">
+
+    <h2 id="phaseTitle"></h2>
+
+    <p id="phaseSubtitle"></p>
+
+    <div class="phone-frame">
+
+        <div id="puzzleBoard"></div>
+    <div></div>
+
+          <div id="puzzleStatus">
+            <br><br>
+            Monte a foto para continuar ❤️
+
+          </div>
+
+    </div>
+
 </section>
 
-<section id="message" class="screen">
-  <div class="card">
-    <h2 id="msgTitle"></h2>
-    <p id="msgText"></p>
-    <button id="nextBtn">Continuar</button>
-  </div>
+<!-- ======================
+MENSAGEM
+====================== -->
+
+<section id="messageScreen" class="screen">
+
+    <div class="glass-card">
+
+        <h2 id="messageTitle"></h2>
+
+        <p id="messageText"></p>
+
+        <button id="continueBtn">
+
+            Continuar ❤️
+
+        </button>
+
+    </div>
+
 </section>
 
-<section id="gallery" class="screen">
-  <h1>Nossas Memórias</h1>
-  <div class="gallery">
-    <img src="img/foto1.jpg"><img src="img/foto2.jpg">
-    <img src="img/foto3.jpg"><img src="img/foto4.jpg">
-  </div>
-  <button id="letterBtn">Abrir Carta</button>
+<!-- ======================
+GALERIA
+====================== -->
+
+<section id="galleryScreen" class="screen">
+
+    <h1>📸 Nossas Memórias</h1>
+
+    <div class="gallery">
+
+        <div class="polaroid">
+            <img src="img/foto1.jpg">
+        </div>
+
+        <div class="polaroid">
+            <img src="img/foto2.jpg">
+        </div>
+
+        <div class="polaroid">
+            <img src="img/foto3.jpg">
+        </div>
+
+        <div class="polaroid">
+            <img src="img/foto4.jpg">
+        </div>
+
+    </div>
+
+    <button id="letterBtn">
+
+        Abrir Carta ❤️
+
+    </button>
+
 </section>
 
-<section id="letter" class="screen">
-  <div class="card">
-    <h1>💌</h1>
-    <p id="typed"></p>
-    <button id="videoBtn">Final</button>
-  </div>
+<!-- ======================
+CARTA
+====================== -->
+
+<section id="letterScreen" class="screen">
+
+    <div class="glass-card letter-card">
+
+        <h1>💌 Para Minha Letícia</h1>
+
+        <p id="typedLetter"></p>
+
+        <button id="videoBtn">
+
+            Para lembrar aquele dia.
+
+        </button>
+
+    </div>
+
 </section>
 
-<section id="final" class="screen">
-  <div class="card">
-    <h1>Eu te amo, Letícia ❤️</h1>
-    <p>Obrigado por cada momento.</p>
-  </div>
+<!-- ======================
+VIDEO
+====================== -->
+
+<section id="videoScreen" class="screen">
+
+    <h1>❤️ Queria ter gravado um vídeo, mas não consegui. 😔 ❤️</h1>
+
+    <video controls>
+
+        <source src="video/surpresa.mp4">
+
+    </video>
+
+    <button id="finalBtn">
+
+      ❤️❤️
+
+    </button>
+
 </section>
+
+<!-- ======================
+SLIDESHOW FINAL
+====================== -->
+
+<section id="finalScreen" class="screen">
+
+    <div class="glass-card final-card">
+
+        <div class="slideshow">
+
+            <img id="slideImage"
+                 src="img/foto1.jpg">
+
+        </div>
+
+        <h1>❤️ Eu Te Amo ❤️</h1>
+
+        <div id="finalCounter"></div>
+
+        <p>
+
+            Obrigado por cada sorriso.
+
+            <br>
+
+            Obrigado por cada abraço.
+
+            <br>
+
+            Obrigado por cada aventura.
+
+            <br><br>
+
+            Você é meu amoozi.
+            Você é minha Pincesa.
+
+            <br><br>
+
+            E nossa história está apenas começando.<br>
+            Jajá estaremos com mais um integrante na nossa família, e eu mal posso esperar para viver cada momento ao seu lado.
+        </p>
+
+    </div>
+
+</section>
+
 <script src="app.js"></script>
+
 </body>
 </html>

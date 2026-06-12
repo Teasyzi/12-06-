@@ -1,35 +1,56 @@
-// =============================
-// CONFIGURAÇÕES
-// =============================
+// ========================================
+// CONFIGURAÇÃO DAS FASES
+// ========================================
 
 const phases = [
+
 {
-    title: "Onde Tudo Começou ❤️",
-    subtitle: "HOPE",
-    image: "img/foto1.jpg",
-    message: `Tudo começou quando dois aprendizes se encontraram na HOPE.
+    title:"Onde Tudo Começou ❤️",
+    subtitle:"HOPE",
+    image:"img/foto1.jpg",
+
+    message:
+
+`Tudo começou quando dois aprendizes se encontraram na HOPE.
 
 Eu cuidava das máquinas.
 
-Você transformava tecidos em algo especial.
+E você costurava com tanto amor e dedicação.
 
-O que eu não imaginava era que encontraria alguém capaz de transformar também a minha vida.`
+O que eu não pensava era que aquela aprendiz se tornaria a pessoa mais importante da minha vida.`
 },
+
 {
-    title: "Nossa Primeira Aventura ❤️",
-    subtitle: "Fortaleza",
-    image: "img/foto2.jpg",
-    message: `Nossa primeira viagem juntos.
+    title:"❤️ Nosso dia ❤️",
+    subtitle:"Fortaleza",
 
-Entre risadas, momentos inesquecíveis e até o perrengue tentando voltar porque o metrô estava fechado...
+    image:"img/foto2.jpg",
 
-Percebi que qualquer aventura fica melhor ao seu lado, Mozin.`
+    message:
+
+`O Pedido.
+
+Um sorriso aqui e outro ali, fui conquistando seu coração.
+
+E foi então que nesse dia tão especial, em Fortaleza, eu te pedi em namoro.
+
+A decisão mais especial da minha vida.
+
+E o melhor de tudo é que cada dia ao seu lado é uma nova aventura.
+
+Percebi que qualquer aventura fica melhor ao seu lado, princesa.`
 },
+
 {
-    title: "Nós ❤️",
-    subtitle: "Nossa História",
-    image: "img/foto3.jpg",
-    message: `Cada conversa.
+    title:"Nós ❤️",
+
+    subtitle:"Nossa História",
+
+    image:"img/foto3.jpg",
+
+    message:
+
+`Cada conversa.
 
 Cada abraço.
 
@@ -37,165 +58,211 @@ Cada sorriso.
 
 Cada momento ao seu lado me faz ter certeza de que escolhi a pessoa certa.`
 }
+
 ];
 
-// =============================
+// ========================================
 // ELEMENTOS
-// =============================
-
-const screens = {
-    home: document.getElementById("home"),
-    puzzle: document.getElementById("puzzleScreen"),
-    message: document.getElementById("messageScreen"),
-    gallery: document.getElementById("galleryScreen"),
-    letter: document.getElementById("letterScreen"),
-    video: document.getElementById("videoScreen"),
-    final: document.getElementById("finalScreen")
-};
-
-const board = document.getElementById("puzzleBoard");
-const progressFill = document.getElementById("progressFill");
-const progressText = document.getElementById("progressText");
+// ========================================
 
 let currentPhase = 0;
 
-// =============================
-// CONTADOR DE DIAS
-// =============================
+const board =
+document.getElementById("puzzleBoard");
 
-function updateDaysCounter() {
+const progress =
+document.getElementById("progressBar");
 
-    const startDate = new Date("2025-02-15");
-    const today = new Date();
+// ========================================
+// DIAS JUNTOS
+// ========================================
 
-    const diff =
-        Math.floor(
-            (today - startDate) /
-            (1000 * 60 * 60 * 24)
-        );
+function updateCounter(){
 
-    document.getElementById("daysCounter").innerHTML = `
-        ❤️ Estamos construindo nossa história há
-        <h2>${diff} dias</h2>
-        ❤️ E ainda estamos escrevendo os melhores capítulos.
-    `;
+    const start =
+    new Date("2025-02-15");
 
-    document.getElementById("finalDays").innerHTML =
-        `❤️ ${diff} dias ao lado da minha Mozin ❤️`;
+    const today =
+    new Date();
+
+    const days =
+    Math.floor(
+    (today-start) /
+    (1000*60*60*24)
+    );
+
+    document.getElementById("counter")
+    .innerHTML =
+
+    `❤️ ${days} dias ao lado da minha princesinhaaa ❤️`;
+
+    document.getElementById("finalCounter")
+    .innerHTML =
+
+    `❤️ ${days} dias construindo nossa história ❤️`;
 }
 
-updateDaysCounter();
+updateCounter();
 
-// =============================
+// ========================================
+// PARTÍCULAS
+// ========================================
+
+function createParticles(){
+
+    const container =
+    document.getElementById("particles");
+
+    for(let i=0;i<60;i++){
+
+        const p =
+        document.createElement("div");
+
+        p.classList.add("particle");
+
+        p.style.left =
+        Math.random()*100 + "vw";
+
+        p.style.animationDuration =
+        (10 + Math.random()*15) + "s";
+
+        p.style.opacity =
+        Math.random();
+
+        container.appendChild(p);
+
+    }
+
+}
+
+createParticles();
+
+// ========================================
 // TROCAR TELA
-// =============================
+// ========================================
 
-function showScreen(screenId){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen =>
-            screen.classList.remove("active")
-        );
+function showScreen(id){
 
     document
-        .getElementById(screenId)
-        .classList.add("active");
+    .querySelectorAll(".screen")
+    .forEach(screen=>{
+
+        screen.classList
+        .remove("active");
+
+    });
+
+    document
+    .getElementById(id)
+    .classList
+    .add("active");
 }
 
-// =============================
-// BOTÃO INICIAL
-// =============================
+// ========================================
+// INÍCIO
+// ========================================
 
 document
 .getElementById("startBtn")
-.addEventListener("click", () => {
+.onclick = ()=>{
 
     const music =
-        document.getElementById("music");
+    document.getElementById("bgMusic");
 
-    music.play().catch(() => {});
+    music.play()
+    .catch(()=>{});
 
-    startPhase();
-
-});
-
-// =============================
-// PUZZLE
-// =============================
-
-function startPhase(){
+    loadPuzzle();
 
     showScreen("puzzleScreen");
 
-    const phase = phases[currentPhase];
+};
 
-    document.getElementById("phaseTitle")
-        .innerText = phase.title;
+// ========================================
+// PUZZLE 3x4
+// ========================================
 
-    document.getElementById("phaseSubtitle")
-        .innerText = phase.subtitle;
+const COLS = 3;
+const ROWS = 4;
 
-    progressFill.style.width =
-        ((currentPhase + 1) * 33) + "%";
+let dragged = null;
 
-    progressText.innerText =
-        ((currentPhase + 1) * 33) + "%";
-
-    createPuzzle(phase.image);
-}
-
-// =============================
-// CRIAÇÃO DO PUZZLE
-// =============================
-
-let draggedPiece = null;
-
-function createPuzzle(image){
+function loadPuzzle(){
 
     board.innerHTML = "";
 
-    let positions = [];
+    const phase =
+    phases[currentPhase];
 
-    for(let i=0;i<9;i++){
-        positions.push(i);
+    document
+    .getElementById("phaseTitle")
+    .innerText =
+    phase.title;
+
+    document
+    .getElementById("phaseSubtitle")
+    .innerText =
+    phase.subtitle;
+
+    progress.style.width =
+    ((currentPhase+1)/3)*100 + "%";
+
+    let pieces = [];
+
+    for(let i=0;i<12;i++){
+
+        pieces.push(i);
+
     }
 
-    positions.sort(() => Math.random() - 0.5);
+    pieces.sort(
+    ()=>Math.random()-0.5
+    );
 
-    positions.forEach(pos => {
+    pieces.forEach(pieceIndex=>{
 
         const piece =
-            document.createElement("div");
+        document.createElement("div");
 
-        piece.classList.add("piece");
-
-        piece.dataset.correct = pos;
-
-        const x = pos % 3;
-        const y = Math.floor(pos / 3);
-
-        piece.style.backgroundImage =
-            `url(${image})`;
-
-        piece.style.backgroundPosition =
-            `${-x*120}px ${-y*120}px`;
+        piece.classList
+        .add("piece");
 
         piece.draggable = true;
 
+        piece.dataset.correct =
+        pieceIndex;
+
+        piece.style.backgroundImage =
+        `url(${phase.image})`;
+
+        piece.style.backgroundSize =
+        `300% 400%`;
+
+        const x =
+        pieceIndex % COLS;
+
+        const y =
+        Math.floor(
+        pieceIndex/COLS
+        );
+
+        piece.style.backgroundPosition =
+
+        `${x*50}% ${y*33.33}%`;
+
         piece.addEventListener(
-            "dragstart",
-            dragStart
+        "dragstart",
+        dragStart
         );
 
         piece.addEventListener(
-            "dragover",
-            dragOver
+        "dragover",
+        dragOver
         );
 
         piece.addEventListener(
-            "drop",
-            dropPiece
+        "drop",
+        dropPiece
         );
 
         board.appendChild(piece);
@@ -206,86 +273,105 @@ function createPuzzle(image){
 
 function dragStart(){
 
-    draggedPiece = this;
+    dragged = this;
 
-    setTimeout(() => {
-        this.classList.add("dragging");
-    },0);
+    this.classList.add(
+    "dragging"
+    );
 
 }
 
 function dragOver(e){
+
     e.preventDefault();
+
 }
 
 function dropPiece(){
 
-    if(!draggedPiece) return;
+    if(
+    !dragged ||
+    dragged===this
+    ) return;
 
-    const tempBg =
-        this.style.backgroundPosition;
+    const bg1 =
+    dragged.style.backgroundPosition;
+
+    const bg2 =
+    this.style.backgroundPosition;
+
+    dragged.style.backgroundPosition =
+    bg2;
 
     this.style.backgroundPosition =
-        draggedPiece.style.backgroundPosition;
+    bg1;
 
-    draggedPiece.style.backgroundPosition =
-        tempBg;
+    const c1 =
+    dragged.dataset.correct;
 
-    const tempCorrect =
-        this.dataset.correct;
+    const c2 =
+    this.dataset.correct;
+
+    dragged.dataset.correct =
+    c2;
 
     this.dataset.correct =
-        draggedPiece.dataset.correct;
+    c1;
 
-    draggedPiece.dataset.correct =
-        tempCorrect;
-
-    draggedPiece.classList.remove(
-        "dragging"
+    dragged.classList.remove(
+    "dragging"
     );
 
-    draggedPiece = null;
-
     checkPuzzle();
+
 }
 
-// =============================
-// VERIFICAR PUZZLE
-// =============================
+// ========================================
+// VERIFICA
+// ========================================
 
 function checkPuzzle(){
 
     const pieces =
-        document.querySelectorAll(".piece");
+    [...document.querySelectorAll(".piece")];
 
-    let correct = 0;
+    let correct = true;
 
     pieces.forEach((piece,index)=>{
 
         if(
-            parseInt(piece.dataset.correct)
-            === index
+        Number(
+        piece.dataset.correct
+        ) !== index
         ){
-            correct++;
+
+            correct = false;
+
         }
 
     });
 
-    if(correct === 9){
+    if(correct){
 
         setTimeout(()=>{
 
-            document.getElementById(
-                "messageTitle"
+            document
+            .getElementById(
+            "messageTitle"
             ).innerText =
-                phases[currentPhase].title;
+            phases[currentPhase]
+            .title;
 
-            document.getElementById(
-                "messageText"
+            document
+            .getElementById(
+            "messageText"
             ).innerText =
-                phases[currentPhase].message;
+            phases[currentPhase]
+            .message;
 
-            showScreen("messageScreen");
+            showScreen(
+            "messageScreen"
+            );
 
         },500);
 
@@ -293,157 +379,210 @@ function checkPuzzle(){
 
 }
 
-// =============================
+// ========================================
 // CONTINUAR
-// =============================
+// ========================================
 
 document
 .getElementById("continueBtn")
-.addEventListener("click",()=>{
+.onclick = ()=>{
 
     currentPhase++;
 
-    if(currentPhase < phases.length){
+    if(
+    currentPhase <
+    phases.length
+    ){
 
-        startPhase();
+        loadPuzzle();
+
+        showScreen(
+        "puzzleScreen"
+        );
 
     }else{
 
-        showScreen("galleryScreen");
+        showScreen(
+        "galleryScreen"
+        );
 
     }
 
-});
+};
 
-// =============================
+// ========================================
 // CARTA
-// =============================
+// ========================================
 
 document
 .getElementById("letterBtn")
-.addEventListener("click",()=>{
+.onclick = ()=>{
 
-    showScreen("letterScreen");
+    showScreen(
+    "letterScreen"
+    );
 
-    typeLetter();
+    writeLetter();
 
-});
+};
 
-function typeLetter(){
+function writeLetter(){
 
-    const text =
+const text =
 
-`Meu amor, Letícia.
-
-Quando te conheci na HOPE, eu jamais imaginaria que aquela aprendiz de costureira se tornaria a pessoa mais importante da minha vida.
-
+`Letícia, meu amor.
+Quando te conheci na HOPE, jamais imaginei que aquela aprendiz de costureira se tornaria a pessoa mais importante da minha vida.
 Desde então construímos nossa história peça por peça.
-
-Tivemos viagens, risadas, desafios e até alguns perrengues que hoje nos fazem sorrir quando lembramos.
-
-Você é minha Mozin, minha Pincesa e minha melhor companhia para qualquer aventura.
-
-Obrigado por cada momento.
-
-Obrigado por cada apoio.
-
+Tivemos viagens, risadas, desafios e até alguns perrengues que hoje nos fazem sorrir.
+Não sou muito bom com palavras, mas quero que saiba o quanto sou grato por cada momento ao seu lado.
+Você é meu amoozi.
+Você é minha Pincesa.
+Obrigado por cada abraço.
 Obrigado por cada sorriso.
-
-Desde 15 de fevereiro de 2025 estamos construindo algo lindo juntos.
-
-E isso é apenas o começo.
-
+Obrigado por existir.
 Feliz Dia dos Namorados ❤️
 
 Eu te amo.`;
 
-    const target =
-        document.getElementById(
-            "typedLetter"
-        );
+const target =
+document.getElementById(
+"typedLetter"
+);
 
-    target.innerHTML = "";
+target.innerHTML = "";
 
-    let i = 0;
+let i=0;
 
-    const interval =
-        setInterval(()=>{
+const timer =
+setInterval(()=>{
 
-        target.innerHTML +=
-            text.charAt(i);
+target.innerHTML +=
+text.charAt(i);
 
-        i++;
+i++;
 
-        if(i >= text.length){
+if(
+i>=text.length
+){
 
-            clearInterval(interval);
-
-        }
-
-    },35);
+clearInterval(timer);
 
 }
 
-// =============================
+},30);
+
+}
+
+// ========================================
 // VIDEO
-// =============================
+// ========================================
 
 document
 .getElementById("videoBtn")
-.addEventListener("click",()=>{
+.onclick = ()=>{
 
-    showScreen("videoScreen");
+showScreen(
+"videoScreen"
+);
 
-});
+};
 
-// =============================
+// ========================================
 // FINAL
-// =============================
+// ========================================
 
 document
 .getElementById("finalBtn")
-.addEventListener("click",()=>{
+.onclick = ()=>{
 
-    showScreen("finalScreen");
+showScreen(
+"finalScreen"
+);
 
-    startHearts();
+startHearts();
 
-});
+startSlideshow();
 
-// =============================
-// CHUVA DE CORAÇÕES
-// =============================
+};
+
+// ========================================
+// SLIDESHOW
+// ========================================
+
+function startSlideshow(){
+
+const photos = [
+
+"img/foto1.jpg",
+"img/foto2.jpg",
+"img/foto3.jpg",
+"img/foto4.jpg"
+
+];
+
+let index = 0;
+
+const img =
+document.getElementById(
+"slideImage"
+);
+
+setInterval(()=>{
+
+index++;
+
+if(
+index>=photos.length
+){
+
+index=0;
+
+}
+
+img.src =
+photos[index];
+
+},3000);
+
+}
+
+// ========================================
+// CORAÇÕES
+// ========================================
 
 function startHearts(){
 
-    const container =
-        document.getElementById(
-            "heart-container"
-        );
+setInterval(()=>{
 
-    setInterval(()=>{
+const heart =
+document.createElement(
+"div"
+);
 
-        const heart =
-            document.createElement("div");
+heart.classList.add(
+"heart"
+);
 
-        heart.classList.add("heart");
+heart.innerHTML =
+"❤️";
 
-        heart.innerHTML = "❤️";
+heart.style.left =
+Math.random()*100
++ "vw";
 
-        heart.style.left =
-            Math.random()*100 + "vw";
+heart.style.animationDuration =
+(3+Math.random()*4)
++ "s";
 
-        heart.style.animationDuration =
-            (3 + Math.random()*3) + "s";
+document.body
+.appendChild(heart);
 
-        container.appendChild(heart);
+setTimeout(()=>{
 
-        setTimeout(()=>{
+heart.remove();
 
-            heart.remove();
+},7000);
 
-        },6000);
-
-    },250);
+},250);
 
 }
