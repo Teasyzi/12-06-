@@ -6,12 +6,12 @@ const phases = [
 
 {
     title:"Onde Tudo Começou ❤️",
-    subtitle:"HOPE",
+    subtitle:"LUPO",
     image:"img/foto1.jpg",
 
     message:
 
-`Tudo começou quando dois aprendizes se encontraram na HOPE.
+`Tudo começou quando dois aprendizes se encontraram na LUPO.
 
 Eu cuidava das máquinas.
 
@@ -431,7 +431,7 @@ function writeLetter(){
 const text =
 
 `Letícia, meu amor.
-Quando te conheci na HOPE, jamais imaginei que aquela aprendiz de costureira se tornaria a pessoa mais importante da minha vida.
+Quando te conheci na LUPO, jamais imaginei que aquela aprendiz de costureira se tornaria a pessoa mais importante da minha vida.
 Desde então construímos nossa história peça por peça.
 Tivemos viagens, risadas, desafios e até alguns perrengues que hoje nos fazem sorrir.
 Não sou muito bom com palavras, mas quero que saiba o quanto sou grato por cada momento ao seu lado.
